@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>W3.CSS Template</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open Sans">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open Sans">
+
+<style>
+h1,h2,h3,h4,h5,h6 {font-family: "Oswald"}
+body {font-family: "Open Sans"}
+</style>
+</head>
+<body class="w3-light-grey">
+
+<!-- Navigation bar with social media icons -->
+<div class="w3-bar w3-black w3-hide-small">
+    <a href="javascript:location.reload(true);" class="w3-bar-item w3-button"><i class="fa fa-flickr"></i></a>
+  </div>
+  
+<!-- w3-content defines a container for fixed size centered content, 
+and is wrapped around the whole page content, except for the footer in this example -->
+<div class="w3-content" style="max-width:1600px">
+
+  <!-- Header -->
+  <header class="w3-container w3-center w3-padding-48 w3-white">
+    <h1 class="w3-xxxlarge"><b>Shortest Path Find</b></h1>
+    <h6>using dijkstra's algorithm <span class="w3-tag">CIT Campus Map</span></h6>
+  </header>
+<style>
+    .container {
+        width: 800px; /* Set the desired container width */
+        max-width: 100%; /* Ensure the image does not exceed the container width */
+    }
+    .container img {
+        width: 100%; /* Make the image width fill its container */
+        height: 500; /* Automatically adjust the height to maintain the aspect ratio */
+    }
+
+    .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 80%;
+        }
+        .left-side {
+            width: 100%;
+        }
+        .left-image {
+            width: 100%;
+            width: 1050px;
+            height: 470px;
+        }
+        .right-side {
+            width: 50%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+        .map {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-gap: 17px;
+            width: 400px;
+        }
+        .place {
+            width: 165px;
+            height: 100px;
+            background-color: #34dfef;
+            border: 1px solid #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 20px; /* Rounded corners */
+        }
+        .place:hover {
+            background-color: #34d434; /* Change to green on hover */
+        }
+        .hidden {
+            display: none;
+        }
+        /* Add this CSS in your stylesheet or within a <style> tag in your HTML */
+#shortest-path-footer,
+#total-distance-footer {
+  font-size: 18px;
+  color: #fff; /* Text color */
+  margin-bottom: 10px;
+}
+
+/* Center-align and style the text within the footer */
+#shortest-path-footer, #total-distance-footer {
+  text-align: center;
+  background-color: #333; /* Background color for the box */
+  color: #fff; /* Text color */
+  padding: 10px; /* Padding inside the box */
+  margin: 5px; /* Margin around the box */
+  border-radius: 5px; /* Rounded corners for the box */
+  display: inline-block; /* Make it a block element for width control */
+}
+
+/* Center the footer content horizontally */
+.w3-container.w3-dark-grey {
+  display: flex;
+  justify-content: center;
+}
+
+
+#shortest-path-footer::before {
+  color: #34dfef; /* Arrow color */
+}
+
+.w3-button {
+  background-color: #333; /* Button background color */
+  color: #fff; /* Button text color */
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px 0;
+  padding: 10px 20px;
+  border: none;
+
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.w3-button:hover {
+  background-color: #555; /* Button background color on hover */
+}
+
+.fa {
+  padding-right: 10px; /* Add space to the right of the Font Awesome icon */
+}
+
+    </style>
+</head>
+<body>
+    <br>
+    
+    <div class="container">
+        <div class="left-side">
+            <p id="source" class="hidden">Source: <span id="sourceText">Select source</span></p>
+            <p id="destination" class="hidden">Destination: <span id="destinationText">Select destination</span></p>
+            <img src="map.png" alt="Image" class="left-image">
+        </div>
+
+        <div class="right-side">
+            <div class="map">
+                <button class="place" onclick="setPoint('ENTERENCE-1')">ENTERENCE-1</button>
+                <button class="place" onclick="setPoint('ENTERENCE-2')">ENTERENCE-2</button>
+                <button class="place" onclick="setPoint('BIKE PARKING')">BIKE PARKING</button>
+                <button class="place" onclick="setPoint('CAR PARKING')">CAR PARKING</button>
+                <button class="place" onclick="setPoint('AUDITORIUM')">AUDITORIUM</button>
+                <button class="place" onclick="setPoint('MAIN HOSTEL')">MAIN HOSTEL</button>
+                <button class="place" onclick="setPoint('LAB BLOCK')">LAB BLOCK</button>
+                <button class="place" onclick="setPoint('IT BLOCK')">IT BLOCK</button>
+                <button class="place" onclick="setPoint('LIBRARY')">LIBRARY</button>
+                <button class="place" onclick="setPoint('MSC BLOCK')">MSC BLOCK</button>
+                <button class="place" onclick="setPoint('TEMPLE')">TEMPLE</button>
+                <button class="place" onclick="setPoint('MAIN GROUND')">MAIN GROUND</button>
+                <button class="place" onclick="setPoint('FOOD STREET')">FOOD STREET</button>
+                <button class="place" onclick="setPoint('CANTEEN')">CANTEEN</button>
+                <button class="place" onclick="setPoint('STUDENT STORE')">STUDENT STORE</button>
+                <button class="place" onclick="setPoint('HOSTEL OFFICE')">HOSTEL OFFICE</button>
+                <button class="place" onclick="setPoint('GIRLS HOSTEL')">GIRLS HOSTEL</button>
+                <button class="place" onclick="setPoint('BOYS HOSTEL')">BOYS HOSTEL</button>
+                <button class="place" onclick="main()">FIND SHORTEST PATH</button>
+            </div>
+        </div>
+    </div>
+<br>
+<script src="/Users/babloo./Desktop/projectjs.js"></script>
+</body>
+ <!-- Footer -->
+ 
+ <footer class="w3-container w3-dark-grey" style="padding: 32px; display: flex; justify-content: space-between; align-items: center;">
+    <div style="text-align: center; background-color: #333; color: #fff; padding: 10px; border-radius: 5px;">
+        <p id="shortest-path-footer"></p>
+        <p id="total-distance-footer"></p>
+    </div>
+</footer>
+
+  
+
+
+  
+  
